@@ -51,6 +51,17 @@ class CartController extends Controller
         Cart::add($request->id, $request->name, 1, $request->price )
             ->associate('App\Product');
 
+        Cart::instance('saveForLater')->search(function($cartItem, $rowId) use ($request){
+          
+            if( $cartItem->id === $request->id)
+                {
+                   
+                    Cart::instance('saveForLater')->remove($rowId);
+                }
+               
+               return $cartItem->id === $request->id;
+        });
+
         return redirect()->route('cart.index')->with('success_message', 'Item is added to your cart!');
     }
 
@@ -120,12 +131,11 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('success_message', 'Item is already saved for later.');
         }
 
-        
+
         Cart::instance('saveForLater')->add($item->id, $item->name, 1, $item->price )
         ->associate('App\Product');
 
         return redirect()->route('cart.index')->with('success_message', 'Item has been saved for later!');
 
     }
-    
 }

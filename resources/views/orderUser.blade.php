@@ -115,7 +115,7 @@ table.table td a {
 	font-weight: bold;
 	color: #566787;
 	display: inline-block;
-	text-decoration: none;
+	decoration: none;
 }
 table.table td a:hover {
 	color: #2196F3;
@@ -126,7 +126,7 @@ table.table td a.view {
 	color: #2196F3;
 	border: 2px solid;
 	border-radius: 30px;
-	text-align: center;
+	align: center;
 }
 table.table td a.view i {
 	font-size: 22px;
@@ -144,16 +144,16 @@ table.table .avatar {
 	vertical-align: middle;
 	line-height: 10px;
 }
-.text-success {
+.success {
 	color: #10c469;
 }
-.text-info {
+.info {
 	color: #62c9e8;
 }
-.text-warning {
+.warning {
 	color: #FFC107;
 }
-.text-danger {
+.danger {
 	color: #ff5b5b;
 }
 .pagination {
@@ -169,7 +169,7 @@ table.table .avatar {
 	margin: 0 2px;
 	line-height: 30px;
 	border-radius: 2px !important;
-	text-align: center;
+	align: center;
 	padding: 0 6px;
 }
 .pagination li a:hover {
@@ -199,15 +199,12 @@ table.table .avatar {
 <body>
 <div class="container-xl">
     <div class="table-responsive">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" style="width:100% ">
                 <thead>
                     <tr>
-                        
-                        
-						<th>Order Number</th>
-						
-						<th>Created Date</th>							
-                        
+						<th  style="width:25% ; align:left">Order Number</th>
+						<th  style="width:25% ; align:right">Created Date</th>							
+                        <th  style="width:50% ; align:right">Product Name</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -217,9 +214,19 @@ table.table .avatar {
            
                     <tr>
                         <td>{{$order->id}}</td>
+
                      
 						<td>{{$order->created_at}}</td>                       
-                   
+                   <td>@foreach( $order->orderProducts as $product)
+				   
+					   <ul>
+					   <li><a href="{{route('shop.show', $product->slug)}}">{{$product->name}}</a> - ₹{{$product->price}}</li>
+					  
+					   </ul>
+					   @endforeach
+				   </td>
+
+				   
                        
                     </tr>
                     @endforeach

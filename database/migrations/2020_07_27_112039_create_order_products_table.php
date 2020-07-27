@@ -18,6 +18,7 @@ class CreateOrderProductsTable extends Migration
             $table->unsignedBigInteger('o_id');
             $table->foreign('o_id')->references('id')->on('orders');
             $table->string('name');
+            $table->string('slug');
             $table->string('details')->nullable();
             $table->enum('status', array('0', '1', '2'))->default('1');
             $table->integer('price');

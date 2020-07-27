@@ -73,6 +73,7 @@ class CheckoutController extends Controller
             $order_product->name = $request->input('product_'.$i.'_name');
             $order_product->price = $request->input('product_'.$i.'_price');
             $order_product->details = $request->input('product_'.$i.'_details');
+            $order_product->slug = $request->input('product_'.$i.'_slug');
 
             $order_product->o_id = $oid;
            

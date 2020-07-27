@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\order;
+use App\User;
 use App\order_product;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +23,10 @@ class OrderController extends Controller
 
         
         $u_id = Session::get('user')[3];
-        $orders = order::all()->where('status','=','1')->where('u_id','=',$u_id);
+        $orders = order::with("orderProducts")
+                        ->where('status','=','1')->where('u_id','=',$u_id)
+                        ->get();
+
         return view('orderUser')->with('orders', $orders);
     }
 
@@ -32,7 +36,11 @@ class OrderController extends Controller
         // $ordersWithProducts = order::all()->hasMany("App\order_product", "o_id" , "id");
         // print_r($ordersWithProducts);
 
-        $orders = order::all()->where('status','=','1');
+        $orders = order::with("orderProducts")
+                        ->with("userDetails")
+                        ->where('status','=','1')
+                        ->get();
+
         return view('orderAdmin')->with('orders', $orders);
     }
 

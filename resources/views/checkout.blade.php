@@ -115,6 +115,8 @@
   <input type="hidden" name="product_{{$i}}_name" value="{{$item->model->name}}">
   <input type="hidden" name="product_{{$i}}_price" value="{{$item->model->price}}">
   <input type="hidden" name="product_{{$i}}_details" value="{{$item->model->details}}">
+
+  <input type="hidden" name="product_{{$i}}_slug" value="{{$item->model->slug}}">
  
  @php $i = $i +1;@endphp
  @endforeach

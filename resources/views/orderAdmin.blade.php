@@ -115,7 +115,7 @@ table.table td a {
 	font-weight: bold;
 	color: #566787;
 	display: inline-block;
-	text-decoration: none;
+	decoration: none;
 }
 table.table td a:hover {
 	color: #2196F3;
@@ -126,7 +126,7 @@ table.table td a.view {
 	color: #2196F3;
 	border: 2px solid;
 	border-radius: 30px;
-	text-align: center;
+	align: center;
 }
 table.table td a.view i {
 	font-size: 22px;
@@ -144,16 +144,16 @@ table.table .avatar {
 	vertical-align: middle;
 	line-height: 10px;
 }
-.text-success {
+.success {
 	color: #10c469;
 }
-.text-info {
+.info {
 	color: #62c9e8;
 }
-.text-warning {
+.warning {
 	color: #FFC107;
 }
-.text-danger {
+.danger {
 	color: #ff5b5b;
 }
 .pagination {
@@ -169,7 +169,7 @@ table.table .avatar {
 	margin: 0 2px;
 	line-height: 30px;
 	border-radius: 2px !important;
-	text-align: center;
+	align: center;
 	padding: 0 6px;
 }
 .pagination li a:hover {
@@ -194,37 +194,40 @@ table.table .avatar {
 	font-size: 13px;
 }    
 </style>
-<script>
-$(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-});
-</script>
+
 </head>
 <body>
 <div class="container-xl">
     <div class="table-responsive">
-    <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" style="width:100% ">
                 <thead>
                     <tr>
-                        
-                        <th>user</th>
-						<th>Order Number</th>
-						
-						<th>Created Date</th>							
-                        
+						<th  style="width:20% ; align:left">User Name</th>
+
+						<th  style="width:20% ; align:left">Order Number</th>
+						<th  style="width:20% ; align:right">Created Date</th>							
+                        <th  style="width:40% ; align:right">Product Name</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($orders as $order)
-            
-                    
-           
                     <tr>
-                        <td>{{$order->u_id}}</td>
+
+                    <td>{{$order->userDetails->fname}}</td>
                         <td>{{$order->id}}</td>
+
                      
 						<td>{{$order->created_at}}</td>                       
-                   
+                   <td>@foreach( $order->orderProducts as $product)
+				   
+					   <ul>
+					   <li><a href="{{route('shop.show', $product->slug)}}">{{$product->name}}</a> - ₹{{$product->price}}</li>
+					  
+					   </ul>
+					   @endforeach
+				   </td>
+
+				   
                        
                     </tr>
                     @endforeach
@@ -236,5 +239,12 @@ $(document).ready(function(){
 </body>
 </html>
 
+<script>
+$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
 
 @endsection
+
