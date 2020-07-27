@@ -124,7 +124,7 @@
             <div class="row">
   
                 <div class="col-md-6">
-                    <input type="file" name="file" class="form-control">
+                    <input type="file" accept=".jpg, .png, .jpeg" name="file" class="form-control">
                 </div>
             </div>
       </div>
