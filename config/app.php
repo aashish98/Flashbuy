@@ -236,4 +236,6 @@ return [
 
     ],
 
+    'stripePublicKey' => env('STRIPE_PUBLIC_KEY'),
+    'stripePrivateKey' => env('STRIPE_PRIVATE_KEY'),
 ];

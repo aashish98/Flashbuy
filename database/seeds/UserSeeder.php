@@ -10,11 +10,15 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        $password=Crypt::encrypt('Admin@123');
-        User::create([
-            'fname' => 'ankit',
+    
+    public function run(){
+        $admin = DB::table('users')->where('email', '=', 'admin@test.com')->first();
+
+        if ($admin === null) {
+            // user doesn't exist
+            $user = User::create([
+
+                'fname' => 'ankit',
             'lname' => 'khantwal',
             'username' => 'admin',
             'role'  => 'admin',
@@ -22,6 +26,8 @@ class UserSeeder extends Seeder
             'phone' => '1223344556',
             'birthdate'=>'1990-07-09',
             'password'=>$password,
-        ]);
+            ]);
+         }
     }
+    
 }

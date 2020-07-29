@@ -139,6 +139,11 @@
   <button class="btn btn-success">Make Payment</button>
 </form>
 
+<?php
+    $showarray = Config::get('app.stripePublicKey');
+   
+?>
+
 @if(Session::has('success-message'))
 <div class="alert alert-success col-md-12">
 {{Session::get('success-message')}}
@@ -153,7 +158,8 @@
 
 @section('extra-js')
 <script>
-var stripe = Stripe('pk_test_cYjCkVhpEHSO6hBUpw7onKAQ00tD3gwEQx');
+
+var stripe = Stripe( <?php echo json_encode($showarray) ?>);
 
 var elements = stripe.elements();
 

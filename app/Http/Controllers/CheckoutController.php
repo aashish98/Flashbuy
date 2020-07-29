@@ -31,11 +31,11 @@ class CheckoutController extends Controller
     }
     public function chargePayment(Request $request)
     {
-
+        
         $total = $request->input('money');
         $replaced = Str::replaceArray(',', [''], $total);
         $final = strstr($replaced, '.', true) ?: $replaced;
-        \Stripe\Stripe::setApiKey('sk_test_BUTj1DTkBYXgRDHkB3tMcIK500lK4x7mVq');
+        \Stripe\Stripe::setApiKey(Config('app.stripePrivateKey'));
         $token = $_POST['stripeToken'];
         try{
         $customer = \Stripe\Customer::create(array(

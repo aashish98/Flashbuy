@@ -58,6 +58,9 @@
     
   <li class="nav-item {{Request::is('about') ? 'active' :''}}">
       <a class="nav-link" href="/">Home</a>
+      
+
+
     </li>
     <li class="nav-item {{Request::is('about') ? 'active' :''}}">
       <a class="nav-link" href="{{route('shop.index')}}">{{__('hindi.shop')}}</a>
