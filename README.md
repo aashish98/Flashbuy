@@ -95,7 +95,7 @@ with userid = admin@test.com and password = Admin@123.
 6) for payment you can create an account on stripe and get the keys
     in env file set your private and public keys as:
     STRIPE_PUBLIC_KEY = "<your publishable key>"
-    STRIPE_Private_KEY = "<your private key>"
+    STRIPE_PRIVATE_KEY = "<your private key>"
 ## website
 
 While logged in as admin you can :
