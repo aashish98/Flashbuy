@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
     
     public function run(){
         $admin = DB::table('users')->where('email', '=', 'admin@test.com')->first();
+        $password=Crypt::encrypt('Admin@123');
 
         if ($admin === null) {
             // user doesn't exist
